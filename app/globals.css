@@ -3,25 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .journal-content {
+    @apply bg-white rounded-2xl;
+  }
+
+  .prompt-card {
+    @apply rounded-xl border border-teal-200 bg-teal-50 p-5;
+  }
+
+  .reflection-card {
+    @apply rounded-xl border border-amber-200 bg-amber-50 p-5;
+  }
+
+  .knowledge-header {
+    @apply bg-blue-50 border-l-4 border-blue-500 rounded-r-xl p-4;
+  }
+
+  .abilities-header {
+    @apply bg-purple-50 border-l-4 border-purple-500 rounded-r-xl p-4;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Thin scrollbar for sidebar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #e2e8f0 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #e2e8f0;
+    border-radius: 2px;
   }
 }
