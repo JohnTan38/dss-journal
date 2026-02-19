@@ -36,6 +36,13 @@ export const sscPdv4045: JournalModule = {
     assessorName: '',
     contactDetails: '',
   },
+  downloadResources: [
+    {
+      label: 'Factsheet on Skills Framework for Social Service (PDF)',
+      href: '/assets/factsheet-on-skills-framework-for-social-service.pdf',
+      filename: 'factsheet-on-skills-framework-for-social-service.pdf',
+    },
+  ],
   learningUnits: [
     // ─────────────────────────────────────────────────────────────────────
     // LEARNING UNIT 1 — LO1: Manpower Planning
@@ -70,6 +77,21 @@ export const sscPdv4045: JournalModule = {
                     kind: 'paragraph',
                     content:
                       'Manpower planning is a systematic process that ensures an organisation has the right number of people, with the right competencies, in the right roles, at the right time. In Singapore\'s social service sector, this process is guided by the Ministry of Manpower (MOM) and frameworks such as the Service Workforce Framework, which provides a structured approach to workforce development across the Planning, Developing, and Supporting lifecycle.',
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Skills Framework for Social Service Alignment',
+                      description:
+                        "The Skills Framework for Social Service complements manpower planning by mapping career pathways, role-specific skills, and training options for the sector. Developed with MSF and NCSS under MySkillsFuture, it supports lifelong learning and clearer progression routes for social service professionals.",
+                      bulletPoints: [
+                        'Target audience includes aspiring entrants, current professionals, social service agencies, and training providers.',
+                        'Career pathways cover direct service roles (such as social work and therapy) as well as management tracks.',
+                        'Skills mapping identifies core skills, technical competencies, and emerging skills needed by the sector.',
+                        'Training and development pathways connect staff to relevant upskilling courses for competency mastery.',
+                        'Industry collaboration is jointly driven by SSG, WSG, MSF, and NCSS.',
+                      ],
+                    },
                   },
                   {
                     kind: 'description-block',
@@ -407,7 +429,7 @@ export const sscPdv4045: JournalModule = {
                       title: '1. Three Levels of Development Planning',
                       description: 'An effective SDF operates simultaneously at three levels:',
                       bulletPoints: [
-                        "Individual Level — The Individual Development Plan (IDP) is the foundational tool. It captures each staff member's current competency level, career aspirations, identified skill gaps, and a time-bound plan to address those gaps through training, mentoring, job rotations, or stretch assignments.",
+                        "Individual Level — The Individual Development Plan (IDP) is the foundational tool. It captures each staff member's current competency level, career aspirations, identified skill gaps, and a time-bound plan to address those gaps through on-the-job training (OJT), mentoring, job rotations, stretch assignments, and external training. Skill gaps are identified during periodic staff appraisals and translated into time-bound training actions.",
                         'Team Level — Team Development Plans aggregate individual IDPs to identify common learning needs that can be addressed through group training, team-based action learning, or cross-functional projects. This ensures teams develop collective capabilities (e.g., trauma-informed care skills across an entire casework team).',
                         "Organisational Level — The organisation-wide Training Needs Analysis (TNA) synthesises team plans and aligns them with the annual strategic plan. Budget allocation follows from this consolidated view, ensuring that learning investments are prioritised based on strategic impact.",
                       ],
