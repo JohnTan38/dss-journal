@@ -290,6 +290,11 @@ export interface JournalModule {
   moduleNumber: string;
   theme: ModuleTheme;
   coverSheet: CoverSheetData;
+  downloadResources?: Array<{
+    label: string;
+    href: string;
+    filename?: string;
+  }>;
   learningUnits: LearningUnit[];
 }
 
