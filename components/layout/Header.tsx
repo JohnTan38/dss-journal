@@ -13,6 +13,11 @@ interface HeaderProps {
   onSidebarToggle: () => void;
   printTargetId: string;
   pdfFilename: string;
+  downloadResources?: Array<{
+    label: string;
+    href: string;
+    filename?: string;
+  }>;
 }
 
 export default function Header({
@@ -23,6 +28,7 @@ export default function Header({
   onSidebarToggle,
   printTargetId,
   pdfFilename,
+  downloadResources,
 }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
@@ -53,7 +59,11 @@ export default function Header({
         </div>
 
         {/* Download */}
-        <DownloadButton targetId={printTargetId} filename={pdfFilename} />
+        <DownloadButton
+          targetId={printTargetId}
+          filename={pdfFilename}
+          resources={downloadResources}
+        />
       </div>
     </header>
   );
