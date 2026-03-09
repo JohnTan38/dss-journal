@@ -438,6 +438,90 @@ Date/Time: 23 Oct 2025, 4:10 PM`,
                         "Includes elements of clients' feedbacks, case management process and continuous improvements of care.",
                     },
                   },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'AIC and MOH Service Quality Guidelines',
+                      description:
+                        'The Agency for Integrated Care (AIC), together with the Ministry of Health (MOH), provides service quality guidelines for elder care centres in Singapore so that care remains safe, dignified, person-centred, and aligned with Intermediate and Long-Term Care (ILTC) expectations.',
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Core Service Requirements',
+                      description:
+                        'The centre applies several baseline checks to make sure each client receives appropriate and consistent care from admission onwards.',
+                      bulletPoints: [
+                        'Initial assessments are conducted to review medical history, functional or cognitive impairment, vital signs, nutritional status, and any dementia-related or daily care needs.',
+                        'Individualised care plans guide the daily programme, including personal care support, medication management, and maintenance exercises supervised by relevant professionals.',
+                        'A person-centred approach is maintained by tailoring care to each client\'s life history, preferences, routines, and goals.',
+                      ],
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Quality and Safety Checks',
+                      description:
+                        'The centre also demonstrates visible day-to-day operational checks that support safety, hygiene, and service quality.',
+                      bulletPoints: [
+                        'Safety risk management focuses on preventing falls, infection control, and close monitoring for any deterioration in a senior\'s condition.',
+                        'Medication safety procedures are observed through proper administration and storage of medicines.',
+                        'Environment and hygiene checks are carried out through regular cleaning and disinfection of the AAC facilities twice daily, once before seniors arrive and once after they leave.',
+                        'Food hygiene is reinforced during lunch service, where the designated food server uses gloves, a face mask, and an apron.',
+                        'Staff competency is another quality check, as day care staff are trained to take clients\' health readings and vital signs accurately.',
+                      ],
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Monitoring and Auditing',
+                      description:
+                        'Beyond routine operations, the provider is expected to monitor service outcomes and use audits to support continuous quality improvement.',
+                      bulletPoints: [
+                        'Performance tracking includes monitoring outcomes such as changes in clients\' functional status.',
+                        'These reviews help the centre show that services are not only delivered, but also evaluated for effectiveness and improvement over time.',
+                      ],
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Integrated Community Care Provider (ICCP) Context',
+                      description:
+                        'The service quality checks are also connected to Singapore\'s wider ICCP model, where regional providers coordinate health and social care to help seniors stay active and supported in the community.',
+                      bulletPoints: [
+                        'ICCP networks such as NTUC Health, BCARE, and SASCO provide one-stop coordination across Active Ageing Centres (AACs), Senior Care Centres (SCCs), day care, and home care services.',
+                        'Active Ageing Centres function as community hubs that support physical health, social engagement, and mental wellness through exercise, screenings, befriending, volunteering, arts, crafts, and interest groups.',
+                        'Starting from April 2026, a single comprehensive assessment point is being implemented to streamline long-term care access and care planning across sub-regions.',
+                        'The Age Well SG initiative further strengthens this quality framework through investment in upgraded AAC environments and preventive community support.',
+                      ],
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Scope of Active Ageing Centre Services',
+                      description:
+                        'The centre\'s service quality checks can also be understood through the AIC scope of support, which clearly differentiates the level of monitoring and intervention needed.',
+                      bulletPoints: [
+                        'A: Active Ageing Programmes support general participation and healthy ageing activities.',
+                        'B: Budding support covers seniors with one risk factor, with one visit per month and six Active Ageing Programme sessions per year.',
+                        'B: Befriending support covers seniors with more than one risk factor, with one visit per week, twelve Active Ageing Programme sessions per year, and community screening of cognitive, social, and physical needs by volunteers.',
+                        'C: Case referral support links seniors to other social services such as Meals on Wheels, medical check-ups, or guidance on using simple applications.',
+                      ],
+                    },
+                  },
+                  {
+                    kind: 'description-block',
+                    content: {
+                      title: 'Reflection',
+                      description:
+                        'From this observation, the centre appears to use a combination of structured assessment, routine hygiene and safety checks, staff competency checks, and service monitoring as part of its quality assurance approach. The clearer demarcation of services across AAC and ICCP pathways also shows that quality is not only about preventing incidents, but also about ensuring seniors receive the right level of support, referral, and follow-up at the right time.',
+                    },
+                  },
                 ],
               },
             },
