@@ -11,18 +11,18 @@ export default function JournalPrompt({ prompts, className }: JournalPromptProps
   return (
     <div
       className={cn(
-        'rounded-xl border border-teal-200 bg-teal-50 p-5 space-y-4',
+        'space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-5',
         className
       )}
     >
       <div className="flex items-center gap-2 mb-1">
-        <MessageSquare className="w-4 h-4 text-teal-600 flex-shrink-0" />
-        <span className="text-xs font-bold uppercase tracking-widest text-teal-700">
+        <MessageSquare className="h-4 w-4 flex-shrink-0 text-slate-600" />
+        <span className="text-xs font-bold uppercase tracking-widest text-slate-700">
           Self-Reflection Journal Prompts
         </span>
       </div>
       {prompts.map((prompt) => (
-        <p key={prompt.id} className="text-sm text-teal-900 leading-relaxed font-medium">
+        <p key={prompt.id} className="text-sm font-medium leading-relaxed text-slate-800">
           {prompt.promptText}
         </p>
       ))}

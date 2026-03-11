@@ -12,13 +12,13 @@ export default function StudentReflection({ content, className }: StudentReflect
   return (
     <div
       className={cn(
-        'rounded-xl border border-amber-200 bg-amber-50 p-5',
+        'rounded-xl border border-slate-200 bg-white p-5',
         className
       )}
     >
       <div className="flex items-center gap-2 mb-3">
-        <PenLine className="w-4 h-4 text-amber-600 flex-shrink-0" />
-        <span className="text-xs font-bold uppercase tracking-widest text-amber-700">
+        <PenLine className="h-4 w-4 flex-shrink-0 text-slate-600" />
+        <span className="text-xs font-bold uppercase tracking-widest text-slate-700">
           Student Reflection Input
         </span>
       </div>

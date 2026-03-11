@@ -5,6 +5,7 @@ import JournalPrompt from '@/components/journal/JournalPrompt';
 import StudentReflection from '@/components/journal/StudentReflection';
 import KnowledgeSection from '@/components/journal/KnowledgeSection';
 import AbilitiesSection from '@/components/journal/AbilitiesSection';
+import { getModuleChrome } from '@/lib/module-theme';
 import type { LearningUnit as LearningUnitType, ModuleTheme, SectionId } from '@/types/journal';
 
 interface LearningUnitProps {
@@ -15,6 +16,7 @@ interface LearningUnitProps {
 
 export default function LearningUnit({ unit, activeSectionId, theme }: LearningUnitProps) {
   const showHeaderEntry = activeSectionId === unit.id;
+  const moduleChrome = getModuleChrome(theme);
 
   // Find which sub-section to show (if any)
   const activeSubSection = unit.subSections.find((s) => s.id === activeSectionId);
@@ -27,7 +29,7 @@ export default function LearningUnit({ unit, activeSectionId, theme }: LearningU
           <div className="flex items-start gap-3">
             <BookOpen className={cn('w-6 h-6 flex-shrink-0 mt-0.5', theme.luIconClass ?? 'text-teal-300')} />
             <div>
-              <SectionBadge label={unit.shortTitle} variant="lu" className="mb-2" />
+              <SectionBadge label={unit.shortTitle} variant="lu" className={cn('mb-2', moduleChrome.luBadge)} />
               <h2 className="text-lg font-bold text-white leading-snug">{unit.title}</h2>
             </div>
           </div>
@@ -37,8 +39,8 @@ export default function LearningUnit({ unit, activeSectionId, theme }: LearningU
       {/* LU-level header prompt entry (Prompt 1) */}
       {showHeaderEntry && unit.headerPromptEntry && (
         <div className="space-y-4">
-          <JournalPrompt prompts={unit.headerPromptEntry.prompts} />
-          <StudentReflection content={unit.headerPromptEntry.studentReflection} />
+          <JournalPrompt prompts={unit.headerPromptEntry.prompts} className={theme.promptCardClass} />
+          <StudentReflection content={unit.headerPromptEntry.studentReflection} className={theme.reflectionCardClass} />
         </div>
       )}
 
@@ -53,9 +55,9 @@ export default function LearningUnit({ unit, activeSectionId, theme }: LearningU
           )}
         >
           {activeSubSection.type === 'knowledge' ? (
-            <KnowledgeSection subSection={activeSubSection} />
+            <KnowledgeSection subSection={activeSubSection} theme={theme} />
           ) : (
-            <AbilitiesSection subSection={activeSubSection} />
+            <AbilitiesSection subSection={activeSubSection} theme={theme} />
           )}
         </div>
       )}
