@@ -4,6 +4,7 @@ import { sscWsh4008 } from '@/data/journals/ssc-wsh-4008';
 import { sscPdv4045 } from '@/data/journals/ssc-pdv-4045';
 import { sscCfc4047 } from '@/data/journals/ssc-cfc-4047';
 import { sscBin4010 } from '@/data/journals/ssc-bin-4010';
+import { applyJournalContentUpdates } from '@/lib/journal-content-updates';
 
 export const modulesRegistry: ModuleRegistryEntry[] = [
   {
@@ -43,13 +44,20 @@ export const modulesRegistry: ModuleRegistryEntry[] = [
   },
 ];
 
-export const modulesData: Record<string, JournalModule> = {
+const baseModulesData: Record<string, JournalModule> = {
   'ssc-pve-4010': sscPve4010,
   'ssc-wsh-4008': sscWsh4008,
   'ssc-pdv-4045': sscPdv4045,
   'ssc-cfc-4047': sscCfc4047,
   'ssc-bin-4010': sscBin4010,
 };
+
+export const modulesData: Record<string, JournalModule> = Object.fromEntries(
+  Object.entries(baseModulesData).map(([moduleId, moduleData]) => [
+    moduleId,
+    applyJournalContentUpdates(moduleData),
+  ])
+);
 
 export function getModuleData(moduleId: string): JournalModule | undefined {
   return modulesData[moduleId];
