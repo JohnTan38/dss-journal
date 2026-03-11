@@ -7,6 +7,7 @@ import Sidebar from '@/components/layout/Sidebar';
 import CoverSheet from '@/components/journal/CoverSheet';
 import LearningUnit from '@/components/journal/LearningUnit';
 import { modulesRegistry } from '@/data/modules-index';
+import { getModuleChrome } from '@/lib/module-theme';
 import { extractReflectionText } from '@/lib/utils';
 import type {
   JournalModule,
@@ -130,6 +131,7 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
   const router = useRouter();
   const [activeSectionId, setActiveSectionId] = useState<SectionId>('cover');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const moduleChrome = getModuleChrome(moduleData.theme);
 
   const navigationOrder = useMemo(() => buildNavigationOrder(moduleData), [moduleData]);
   const sectionLabels = useMemo(() => buildSectionLabels(moduleData), [moduleData]);
@@ -188,7 +190,7 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
   const pdfFilename = `${moduleData.moduleCode}-${moduleData.moduleNumber}-Journal.pdf`;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 flex">
+    <div className={`min-h-screen ${moduleChrome.page} flex`}>
       {/* Sidebar */}
       <Sidebar
         groups={sidebarGroups}
@@ -215,10 +217,11 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
           onSidebarToggle={() => setSidebarOpen(true)}
           printTargetId="journal-content"
           pdfFilename={pdfFilename}
+          downloadResources={moduleData.downloadResources}
         />
 
         {/* Section label bar */}
-        <div className="border-b border-gray-200 bg-white/70 px-6 py-2.5">
+        <div className={`border-b px-6 py-2.5 ${moduleChrome.sectionBar}`}>
           <p className="text-xs font-medium text-gray-400">
             {currentIndex + 1} of {navigationOrder.length} &mdash;{' '}
             <span className="text-gray-600 font-semibold">
@@ -229,7 +232,10 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
 
         {/* Journal content region */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <div id="journal-content" className="max-w-4xl mx-auto bg-white">
+          <div
+            id="journal-content"
+            className="max-w-4xl mx-auto overflow-hidden rounded-[28px] border border-white/70 bg-white/95 shadow-[0_28px_90px_-52px_rgba(15,23,42,0.45)]"
+          >
             <div className="p-4 sm:p-6 lg:p-8">
               {activeSectionId === 'cover' ? (
                 <CoverSheet data={moduleData.coverSheet} moduleId={moduleData.moduleId} coverTitleClass={moduleData.theme.coverTitleClass} />
@@ -255,7 +261,7 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
           <button
             onClick={handleNext}
             disabled={!hasNext}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white disabled:opacity-40 hover:bg-blue-700 transition-colors"
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-40 transition-colors ${moduleData.theme.buttonPrimaryClass}`}
           >
             Next →
           </button>
