@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 import Header from '@/components/layout/Header';
 import Sidebar from '@/components/layout/Sidebar';
 import CoverSheet from '@/components/journal/CoverSheet';
@@ -87,7 +88,7 @@ function buildSearchIndex(moduleData: JournalModule): SearchIndexEntry[] {
   // Cover sheet
   entries.push({
     sectionId: 'cover',
-    label: 'Cover Sheet',
+    label: `${moduleData.moduleNumber} - Cover Sheet`,
     textContent: [
       moduleData.moduleCode,
       moduleData.moduleName,
@@ -105,7 +106,7 @@ function buildSearchIndex(moduleData: JournalModule): SearchIndexEntry[] {
       const reflectionText = extractReflectionText(lu.headerPromptEntry.studentReflection);
       entries.push({
         sectionId: lu.id,
-        label: lu.shortTitle,
+        label: `${moduleData.moduleNumber} - ${lu.shortTitle}`,
         textContent: `${lu.title} ${promptText} ${reflectionText}`.toLowerCase(),
       });
     }
@@ -118,7 +119,7 @@ function buildSearchIndex(moduleData: JournalModule): SearchIndexEntry[] {
       ]);
       entries.push({
         sectionId: sub.id,
-        label: `${lu.shortTitle} — ${sub.label}`,
+        label: `${moduleData.moduleNumber} - ${lu.shortTitle} - ${sub.label}`,
         textContent: `${sub.label} ${sub.performanceCriteriaTitle} ${texts.join(' ')}`.toLowerCase(),
       });
     }
@@ -237,11 +238,29 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
             className="max-w-4xl mx-auto overflow-hidden rounded-[28px] border border-white/70 bg-white/95 shadow-[0_28px_90px_-52px_rgba(15,23,42,0.45)]"
           >
             <div className="p-4 sm:p-6 lg:p-8">
-              {activeSectionId === 'cover' ? (
-                <CoverSheet data={moduleData.coverSheet} moduleId={moduleData.moduleId} coverTitleClass={moduleData.theme.coverTitleClass} />
-              ) : activeLU ? (
-                <LearningUnit unit={activeLU} activeSectionId={activeSectionId} theme={moduleData.theme} />
-              ) : null}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeSectionId}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {activeSectionId === 'cover' ? (
+                    <CoverSheet
+                      data={moduleData.coverSheet}
+                      moduleId={moduleData.moduleId}
+                      coverTitleClass={moduleData.theme.coverTitleClass}
+                    />
+                  ) : activeLU ? (
+                    <LearningUnit
+                      unit={activeLU}
+                      activeSectionId={activeSectionId}
+                      theme={moduleData.theme}
+                    />
+                  ) : null}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </main>
@@ -251,6 +270,7 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
           <button
             onClick={handlePrev}
             disabled={!hasPrev}
+            aria-label="Previous section"
             className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium border border-gray-200 text-gray-700 disabled:opacity-40 hover:bg-gray-50 transition-colors"
           >
             ← Previous
@@ -261,6 +281,7 @@ export default function JournalPageClient({ moduleData }: JournalPageClientProps
           <button
             onClick={handleNext}
             disabled={!hasNext}
+            aria-label="Next section"
             className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium disabled:opacity-40 transition-colors ${moduleData.theme.buttonPrimaryClass}`}
           >
             Next →
