@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { SearchIndexEntry, SectionId } from '@/types/journal';
@@ -22,9 +23,13 @@ export default function SearchBar({ searchIndex, onNavigate, className }: Search
     return () => clearTimeout(timer);
   }, [query]);
 
+  const normalizedQuery = deferredQuery.trim().toLowerCase();
+  const queryTerms = normalizedQuery.split(/\s+/).filter(Boolean);
   const results =
-    deferredQuery.trim().length > 0
-      ? searchIndex.filter((e) => e.textContent.includes(deferredQuery.trim().toLowerCase()))
+    queryTerms.length > 0
+      ? searchIndex
+          .filter((entry) => queryTerms.every((term) => entry.textContent.includes(term)))
+          .slice(0, 12)
       : [];
 
   const handleSelect = (sectionId: SectionId) => {
@@ -69,8 +74,15 @@ export default function SearchBar({ searchIndex, onNavigate, className }: Search
         )}
       </div>
 
-      {open && deferredQuery.trim() && (
-        <div className="absolute top-full mt-1 left-0 right-0 z-50 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+      <AnimatePresence>
+        {open && normalizedQuery && (
+        <motion.div
+          initial={{ opacity: 0, y: -6, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -6, scale: 0.98 }}
+          transition={{ duration: 0.16, ease: 'easeOut' }}
+          className="absolute top-full mt-1 left-0 right-0 z-50 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden"
+        >
           {results.length > 0 ? (
             <>
               <div className="px-3 py-1.5 bg-gray-50 border-b border-gray-100">
@@ -95,8 +107,9 @@ export default function SearchBar({ searchIndex, onNavigate, className }: Search
           ) : (
             <div className="px-3 py-3 text-sm text-gray-400">No results found.</div>
           )}
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   FileText,
   BookOpen,
@@ -240,17 +241,34 @@ export default function Sidebar({
       </aside>
 
       {/* Mobile overlay */}
-      {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div
+      <AnimatePresence>
+        {isOpen && (
+        <motion.div
+          className="lg:hidden fixed inset-0 z-50 flex"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+        >
+          <motion.div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm"
             onClick={onClose}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           />
-          <aside className="relative flex flex-col w-72 bg-white h-full shadow-2xl z-10">
+          <motion.aside
+            className="relative flex flex-col w-72 bg-white h-full shadow-2xl z-10"
+            initial={{ x: -288 }}
+            animate={{ x: 0 }}
+            exit={{ x: -288 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          >
             {sidebarContent}
-          </aside>
-        </div>
-      )}
+          </motion.aside>
+        </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
